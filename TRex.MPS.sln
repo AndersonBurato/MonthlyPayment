@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRex.MPS", "TRex.MPS\TRex.MPS.csproj", "{DF266EDB-F5F7-4E8A-A40E-6B9C64B75AFF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRex.MPS.Payment", "TRex.MPS.Service.Payment\TRex.MPS.Payment.csproj", "{8011E048-C546-437B-A199-12DB8AB21120}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DF82B7D5-21F7-40CD-A203-23AC5D9C6CD8} = {DF82B7D5-21F7-40CD-A203-23AC5D9C6CD8}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRex.MPS.Model", "TRex.MPS.Model\TRex.MPS.Model.csproj", "{DF82B7D5-21F7-40CD-A203-23AC5D9C6CD8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRex.MPS.Login", "TRex.MPS.Login\TRex.MPS.Login.csproj", "{EE058F29-021B-421A-B0F0-A02C7767CABA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TRex.MPS.Core", "TRex.MPS.Core\TRex.MPS.Core.csproj", "{A4DA9B70-87FC-4148-BB69-517A887C6CB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TRex.MPS.Employee", "TRex.MPS.Employee\TRex.MPS.Employee.csproj", "{20D449FD-3DB6-4305-B1AE-82B74D8E0B2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF266EDB-F5F7-4E8A-A40E-6B9C64B75AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF266EDB-F5F7-4E8A-A40E-6B9C64B75AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF266EDB-F5F7-4E8A-A40E-6B9C64B75AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF266EDB-F5F7-4E8A-A40E-6B9C64B75AFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8011E048-C546-437B-A199-12DB8AB21120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8011E048-C546-437B-A199-12DB8AB21120}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8011E048-C546-437B-A199-12DB8AB21120}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8011E048-C546-437B-A199-12DB8AB21120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF82B7D5-21F7-40CD-A203-23AC5D9C6CD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF82B7D5-21F7-40CD-A203-23AC5D9C6CD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF82B7D5-21F7-40CD-A203-23AC5D9C6CD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF82B7D5-21F7-40CD-A203-23AC5D9C6CD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE058F29-021B-421A-B0F0-A02C7767CABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE058F29-021B-421A-B0F0-A02C7767CABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE058F29-021B-421A-B0F0-A02C7767CABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE058F29-021B-421A-B0F0-A02C7767CABA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4DA9B70-87FC-4148-BB69-517A887C6CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4DA9B70-87FC-4148-BB69-517A887C6CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4DA9B70-87FC-4148-BB69-517A887C6CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4DA9B70-87FC-4148-BB69-517A887C6CB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20D449FD-3DB6-4305-B1AE-82B74D8E0B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20D449FD-3DB6-4305-B1AE-82B74D8E0B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20D449FD-3DB6-4305-B1AE-82B74D8E0B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20D449FD-3DB6-4305-B1AE-82B74D8E0B2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {807EF906-2C85-4EDA-8CB4-50FD1E6D5779}
+	EndGlobalSection
+EndGlobal
