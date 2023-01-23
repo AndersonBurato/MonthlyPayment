@@ -61,6 +61,7 @@
             // 
             // ClaimSalaryForm
             // 
+            this.AcceptButton = this.ClaimButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(336, 137);

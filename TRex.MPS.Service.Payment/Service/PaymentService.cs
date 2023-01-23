@@ -1,57 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-using TRex.MPS.Model.Employee;
+﻿using TRex.MPS.Model.Employee;
 using TRex.MPS.Model.Payment;
 using TRex.MPS.Payment.DataService;
 
-namespace TRex.MPS.Payment.Service
+namespace TRex.MPS.Payment.Service;
+
+public class PaymentService : IPaymentService
 {
-    public class PaymentService : IPaymentService
+    private readonly IPaymentDataService _paymentDataService;
+
+    public PaymentService(IPaymentDataService paymentDataService)
     {
-        
+        _paymentDataService = paymentDataService;
+    }
 
-        private readonly IPaymentDataService _paymentDataService;
+    public List<EmployeePaymentCode> GenerateCodesToEmails(DateTimeOffset paymentDate, List<EmployeeModel> employees)
+    {
+        var employeeCodeList = new List<EmployeePaymentCode>();
 
-        public PaymentService(IPaymentDataService paymentDataService)
+        foreach (var employee in employees)
         {
-            _paymentDataService = paymentDataService;
-        }
+            var code = GenerateCode(paymentDate, employee.Id);
 
-        public List<EmployeePaymentCode> GenerateCodesToEmails(DateTimeOffset paymentDate, List<EmployeeModel> employees)
-        {
-            var employeeCodeList = new List<EmployeePaymentCode>();
+            _paymentDataService.AddPaymentToClaim(paymentDate, employee.Id, code);
 
-            foreach (var employee in employees)
+            employeeCodeList.Add(new EmployeePaymentCode
             {
-                var code = GenerateCode(paymentDate, employee.Id);
-
-                _paymentDataService.AddPaymentToClaim(paymentDate, employee.Id, code);
-
-                employeeCodeList.Add(new EmployeePaymentCode
-                {
-                    EmployeeId = employee.Id,
-                    Code = code,
-                    EmployeeName = employee.Name,
-                    PaymentDate = paymentDate,
-                    Salary = employee.Salary
-                });
-            }
-
-            return employeeCodeList;
+                EmployeeId = employee.Id,
+                Code = code,
+                EmployeeName = employee.Name,
+                PaymentDate = paymentDate
+            });
         }
 
-        private string GenerateCode(DateTimeOffset paymentDate, int employeeId)
-        {
-            return  $"{paymentDate.Month}{paymentDate.Year}{new Random(employeeId).Next()}";
-        }
+        return employeeCodeList;
+    }
 
-        public bool ClaimSalary(int employeeId, int code)
-        {
-            return _paymentDataService.ClaimSalary(employeeId, code);
-        }
+    public bool ClaimSalary(int employeeId, int code)
+    {
+        return _paymentDataService.ClaimSalary(employeeId, code);
+    }
+
+    private string GenerateCode(DateTimeOffset paymentDate, int employeeId)
+    {
+        return $"{paymentDate.ToString("MMyy")}{new Random().Next(0, 99999)}";
     }
 }

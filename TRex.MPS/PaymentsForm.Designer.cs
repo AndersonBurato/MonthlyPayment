@@ -61,7 +61,7 @@
             this.MonthYearPaymentDateTimePicker.CustomFormat = "MM/yyyy";
             this.MonthYearPaymentDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.MonthYearPaymentDateTimePicker.Location = new System.Drawing.Point(195, 11);
-            this.MonthYearPaymentDateTimePicker.MaxDate = DateTime.Now.Date.AddMonths(1);
+            this.MonthYearPaymentDateTimePicker.MaxDate = new System.DateTime(2023, 2, 23, 0, 0, 0, 0);
             this.MonthYearPaymentDateTimePicker.Name = "MonthYearPaymentDateTimePicker";
             this.MonthYearPaymentDateTimePicker.Size = new System.Drawing.Size(212, 31);
             this.MonthYearPaymentDateTimePicker.TabIndex = 3;
@@ -86,6 +86,7 @@
             this.Controls.Add(this.EmployeeCheckedList);
             this.Name = "PaymentsForm";
             this.Text = "PaymentsForm";
+            this.Load += new System.EventHandler(this.PaymentsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

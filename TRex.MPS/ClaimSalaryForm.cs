@@ -1,44 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TRex.MPS.Payment.Service;
+﻿using TRex.MPS.Payment.Service;
 
-namespace TRex.MPS
+namespace TRex.MPS;
+
+public partial class ClaimSalaryForm : Form
 {
-    public partial class ClaimSalaryForm : Form
+    private readonly IPaymentService _paymentService;
+
+    public ClaimSalaryForm(IPaymentService paymentService)
     {
-        private readonly IPaymentService _paymentService;
+        InitializeComponent();
+        _paymentService = paymentService;
+    }
 
-        public ClaimSalaryForm(IPaymentService paymentService)
+    private void ClaimButton_Click(object sender, EventArgs e)
+    {
+        if (!int.TryParse(CodeText.Text, out var code))
         {
-            InitializeComponent();
-            _paymentService = paymentService;
+            MessageBox.Show("Invalid Code");
+            return;
         }
 
-        private void ClaimButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!int.TryParse(ClaimButton.Text, out int code))
-                {
-                    MessageBox.Show("Invalid Code");
-                    return;
-                }
-
-                _paymentService.ClaimSalary(Global.profile!.EmployeeId, code);
-
-                MessageBox.Show("Salary claimed.", "Success");
-            }
-            catch
-            {
-                MessageBox.Show("Error");
-            }
-        }
+        if (_paymentService.ClaimSalary(Global.profile!.EmployeeId, code))
+            MessageBox.Show("Salary claimed.", "Success");
+        else
+            MessageBox.Show("Code doesn't exist or already claimed");
     }
 }

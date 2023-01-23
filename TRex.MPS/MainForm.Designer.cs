@@ -55,6 +55,7 @@
             this.myActionsToolStripMenuItem.Name = "myActionsToolStripMenuItem";
             this.myActionsToolStripMenuItem.Size = new System.Drawing.Size(117, 29);
             this.myActionsToolStripMenuItem.Text = "My Actions";
+            this.myActionsToolStripMenuItem.Visible = false;
             // 
             // claimSalaryToolStripMenuItem
             // 
@@ -70,11 +71,12 @@
             this.employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
             this.employeesToolStripMenuItem.Size = new System.Drawing.Size(114, 29);
             this.employeesToolStripMenuItem.Text = "&Employees";
+            this.employeesToolStripMenuItem.Visible = false;
             // 
             // paymentsToolStripMenuItem
             // 
             this.paymentsToolStripMenuItem.Name = "paymentsToolStripMenuItem";
-            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(190, 34);
+            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.paymentsToolStripMenuItem.Text = "&Payments";
             this.paymentsToolStripMenuItem.Click += new System.EventHandler(this.paymentsToolStripMenuItem_Click);
             // 
@@ -88,6 +90,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

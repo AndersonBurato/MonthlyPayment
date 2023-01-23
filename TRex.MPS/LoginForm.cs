@@ -4,14 +4,14 @@ namespace TRex.MPS;
 
 public partial class LoginForm : Form
 {
-    public bool IsAuthentiated { get; set; } = false;
-    private ILoginService _loginService { get; }
-
     public LoginForm(ILoginService loginService)
     {
         InitializeComponent();
         _loginService = loginService;
     }
+
+    public bool IsAuthentiated { get; set; }
+    private ILoginService _loginService { get; }
 
     private void LoginButton_Click(object sender, EventArgs e)
     {
@@ -23,6 +23,8 @@ public partial class LoginForm : Form
             return;
         }
 
-        this.Close();
+        IsAuthentiated = true;
+
+        Close();
     }
 }

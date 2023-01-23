@@ -14,9 +14,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRex.MPS.Model", "TRex.MPS.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRex.MPS.Login", "TRex.MPS.Login\TRex.MPS.Login.csproj", "{EE058F29-021B-421A-B0F0-A02C7767CABA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TRex.MPS.Core", "TRex.MPS.Core\TRex.MPS.Core.csproj", "{A4DA9B70-87FC-4148-BB69-517A887C6CB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRex.MPS.Core", "TRex.MPS.Core\TRex.MPS.Core.csproj", "{A4DA9B70-87FC-4148-BB69-517A887C6CB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TRex.MPS.Employee", "TRex.MPS.Employee\TRex.MPS.Employee.csproj", "{20D449FD-3DB6-4305-B1AE-82B74D8E0B2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRex.MPS.Employee", "TRex.MPS.Employee\TRex.MPS.Employee.csproj", "{20D449FD-3DB6-4305-B1AE-82B74D8E0B2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{C4C6A67E-C94C-4A1D-A28C-DD7F6520C02A}"
+	ProjectSection(SolutionItems) = preProject
+		script.sql = script.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

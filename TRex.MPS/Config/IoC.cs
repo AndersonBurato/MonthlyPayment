@@ -1,52 +1,51 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
+using TRex.MPS.Employee;
+using TRex.MPS.Login;
 using TRex.MPS.Model.Configuration;
 using TRex.MPS.Payment;
-using TRex.MPS.Login;
-using TRex.MPS.Employee;
 
-namespace TRex.MPS.Config
+namespace TRex.MPS.Config;
+
+public static class IoC
 {
-    public static class IoC
+    private const string DataBaseConnectionString = "DataBaseConnectionString";
+    private static ServiceProvider ServiceProvider;
+
+    public static T GetForm<T>() where T : Form
     {
-        private const string DataBaseConnectionString = "DataBaseConnectionString";
-        private static ServiceProvider ServiceProvider = null;
+        return ServiceProvider.GetRequiredService<T>();
+    }
 
-        public static T GetForm<T>() where T : Form
+    public static void Init()
+    {
+        var services = new ServiceCollection();
+        RegisterForms(services);
+
+        var appSettings = new AppSettings
         {
-            return ServiceProvider.GetRequiredService<T>();
-        }
-
-        public static void Init()
-        {
-            var services = new ServiceCollection();
-            RegisterForms(services);
-
-            var appSettings = new AppSettings
+            DataBaseSettings = new DataBaseSettings
             {
-                DataBaseSettings = new DataBaseSettings
-                {
-                    ConnectionString = ConfigurationManager.AppSettings[DataBaseConnectionString] ?? throw new ConfigurationErrorsException($"Missing {DataBaseConnectionString}")
-                }
-            };
+                ConnectionString =
+                    "Data Source=NOTE-BURATO;Initial Catalog=TRex;Integrated Security=True;Encrypt=True;TrustServerCertificate=True"
+            }
+        };
 
-            services.AddSingleton(appSettings);
+        services.AddSingleton(appSettings);
 
-            services
-                .ConfigurePaymentServices()
-                .ConfigureLoginServices()
-                .ConfigureEmployeeServices();
+        services
+            .ConfigurePaymentServices()
+            .ConfigureLoginServices()
+            .ConfigureEmployeeServices();
 
 
-            ServiceProvider = services.BuildServiceProvider();
-        }
+        ServiceProvider = services.BuildServiceProvider();
+    }
 
-        private static void RegisterForms(IServiceCollection services)
-        {
-            services.AddSingleton<MainForm>();
-            services.AddTransient<LoginForm>();
-            services.AddTransient<PaymentsForm>();
-            services.AddTransient<ClaimSalaryForm>();
-        }
+    private static void RegisterForms(IServiceCollection services)
+    {
+        services.AddSingleton<MainForm>();
+        services.AddTransient<LoginForm>();
+        services.AddTransient<PaymentsForm>();
+        services.AddTransient<ClaimSalaryForm>();
     }
 }

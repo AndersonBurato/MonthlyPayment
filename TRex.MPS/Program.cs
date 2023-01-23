@@ -1,18 +1,20 @@
+using TRex.MPS.Config;
+
 namespace TRex.MPS;
 
-static class Program
+internal static class Program
 {
     /// <summary>
-    ///  The main entry point for the application.
+    ///     The main entry point for the application.
     /// </summary>
     [STAThread]
-    static void Main()
+    private static void Main()
     {
         ApplicationConfiguration.Initialize();
 
-        Config.IoC.Init();
+        IoC.Init();
 
-        var mainForm = Config.IoC.GetForm<MainForm>();
+        var mainForm = IoC.GetForm<MainForm>();
 
         Application.Run(mainForm);
     }
