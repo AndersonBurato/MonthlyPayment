@@ -33,6 +33,7 @@
             this.claimSalaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.paymentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.claimedPaymentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,14 +61,15 @@
             // claimSalaryToolStripMenuItem
             // 
             this.claimSalaryToolStripMenuItem.Name = "claimSalaryToolStripMenuItem";
-            this.claimSalaryToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.claimSalaryToolStripMenuItem.Size = new System.Drawing.Size(210, 34);
             this.claimSalaryToolStripMenuItem.Text = "Claim Salary";
             this.claimSalaryToolStripMenuItem.Click += new System.EventHandler(this.claimSalaryToolStripMenuItem_Click);
             // 
             // employeesToolStripMenuItem
             // 
             this.employeesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.paymentsToolStripMenuItem});
+            this.paymentsToolStripMenuItem,
+            this.claimedPaymentsToolStripMenuItem});
             this.employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
             this.employeesToolStripMenuItem.Size = new System.Drawing.Size(114, 29);
             this.employeesToolStripMenuItem.Text = "&Employees";
@@ -79,6 +81,13 @@
             this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.paymentsToolStripMenuItem.Text = "&Payments";
             this.paymentsToolStripMenuItem.Click += new System.EventHandler(this.paymentsToolStripMenuItem_Click);
+            // 
+            // claimedPaymentsToolStripMenuItem
+            // 
+            this.claimedPaymentsToolStripMenuItem.Name = "claimedPaymentsToolStripMenuItem";
+            this.claimedPaymentsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.claimedPaymentsToolStripMenuItem.Text = "Claimed Payments";
+            this.claimedPaymentsToolStripMenuItem.Click += new System.EventHandler(this.claimedPaymentsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -106,5 +115,6 @@
         private ToolStripMenuItem paymentsToolStripMenuItem;
         private ToolStripMenuItem myActionsToolStripMenuItem;
         private ToolStripMenuItem claimSalaryToolStripMenuItem;
+        private ToolStripMenuItem claimedPaymentsToolStripMenuItem;
     }
 }

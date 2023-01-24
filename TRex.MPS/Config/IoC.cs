@@ -36,8 +36,7 @@ public static class IoC
             .ConfigurePaymentServices()
             .ConfigureLoginServices()
             .ConfigureEmployeeServices();
-
-
+        
         ServiceProvider = services.BuildServiceProvider();
     }
 
@@ -47,5 +46,6 @@ public static class IoC
         services.AddTransient<LoginForm>();
         services.AddTransient<PaymentsForm>();
         services.AddTransient<ClaimSalaryForm>();
+        services.AddTransient<ClaimedPaymentForm>();
     }
 }

@@ -4,7 +4,7 @@
     <Compile Update="ClaimSalaryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="GeneratedCodesForm.cs">
+    <Compile Update="ClaimedPaymentForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="LoginForm.cs">

@@ -34,8 +34,6 @@ public partial class PaymentsForm : Form
 
     private void SendPaymentCodes_Click(object sender, EventArgs e)
     {
-        var selectedEmployee = EmployeeCheckedList.CheckedItems;
-
         var employeeToGenerateCode = new List<EmployeeModel>();
 
         foreach (var item in EmployeeCheckedList.CheckedItems)
@@ -48,9 +46,11 @@ public partial class PaymentsForm : Form
             });
         }
 
-        var employeeCodes =
-            _paymentService.GenerateCodesToEmails(MonthYearPaymentDateTimePicker.Value, employeeToGenerateCode);
+        var paymentDate = new DateTime(MonthYearPaymentDateTimePicker.Value.Year, MonthYearPaymentDateTimePicker.Value.Month, 1);
 
-        //todo:send email
+        var employeeCodes =
+            _paymentService.GenerateCodesToEmails(paymentDate, employeeToGenerateCode);
+
+        //todo:send real email
     }
 }

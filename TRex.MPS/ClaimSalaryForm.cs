@@ -24,5 +24,7 @@ public partial class ClaimSalaryForm : Form
             MessageBox.Show("Salary claimed.", "Success");
         else
             MessageBox.Show("Code doesn't exist or already claimed");
+
+        //todo:generate report with the payment as done
     }
 }

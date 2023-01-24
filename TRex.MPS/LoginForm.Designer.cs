@@ -93,7 +93,7 @@ partial class LoginForm
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TRex - HHRR - Login";
+            this.Text = "TRex - Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 
