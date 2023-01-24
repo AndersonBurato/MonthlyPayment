@@ -1,6 +1,6 @@
 ﻿namespace TRex.MPS.Model;
 
-public class objectListItem
+public class ObjectListItem
 {
     public int Value { get; set; }
     public string Text { get; set; }

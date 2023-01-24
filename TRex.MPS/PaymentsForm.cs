@@ -1,4 +1,5 @@
-﻿using TRex.MPS.Employee.DataService;
+﻿using System.Linq;
+using TRex.MPS.Employee.DataService;
 using TRex.MPS.Model;
 using TRex.MPS.Model.Employee;
 using TRex.MPS.Payment.Service;
@@ -28,8 +29,8 @@ public partial class PaymentsForm : Form
 
 
         foreach (var employee in employeeList)
-            EmployeeCheckedList.Items.Add(new objectListItem
-                { Value = employee.Id, Text = $"{employee.Id} - {employee.Name}" });
+            EmployeeCheckedList.Items.Add(new ObjectListItem
+                { Value = employee.Id, Text = employee.Name });
     }
 
     private void SendPaymentCodes_Click(object sender, EventArgs e)
@@ -38,19 +39,27 @@ public partial class PaymentsForm : Form
 
         foreach (var item in EmployeeCheckedList.CheckedItems)
         {
-            var objectListItem = (objectListItem)item;
+            var objectListItem = (ObjectListItem)item;
 
             employeeToGenerateCode.Add(new EmployeeModel
             {
-                Id = objectListItem.Value
+                Id = objectListItem.Value,
+                Name = objectListItem.Text
             });
         }
 
         var paymentDate = new DateTime(MonthYearPaymentDateTimePicker.Value.Year, MonthYearPaymentDateTimePicker.Value.Month, 1);
 
-        var employeeCodes =
+        var (employeeCodes, employeeNamesPaymentAlreadyExist) =
             _paymentService.GenerateCodesToEmails(paymentDate, employeeToGenerateCode);
 
         //todo:send real email
+
+        if (employeeNamesPaymentAlreadyExist.Any())
+        {
+            MessageBox.Show($"Payment code already exist for: {string.Join(",", employeeNamesPaymentAlreadyExist)}");
+        }
+
+        MessageBox.Show("Emails sent.");
     }
 }

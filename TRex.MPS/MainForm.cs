@@ -20,7 +20,7 @@ public partial class MainForm : Form
             return;
         }
 
-        employeesToolStripMenuItem.Visible = Global.profile!.Role.Equals("hr", StringComparison.OrdinalIgnoreCase);
+        employeesToolStripMenuItem.Visible = Global.profile!.Role.Equals(Global.Roles.HR, StringComparison.OrdinalIgnoreCase);
         myActionsToolStripMenuItem.Visible = true;
     }
 

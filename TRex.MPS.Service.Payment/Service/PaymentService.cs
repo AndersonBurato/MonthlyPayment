@@ -13,15 +13,23 @@ public class PaymentService : IPaymentService
         _paymentDataService = paymentDataService;
     }
 
-    public List<EmployeePaymentCode> GenerateCodesToEmails(DateTimeOffset paymentDate, List<EmployeeModel> employees)
+    public (List<EmployeePaymentCode>, List<string>) GenerateCodesToEmails(DateTimeOffset paymentDate, List<EmployeeModel> employees)
     {
         var employeeCodeList = new List<EmployeePaymentCode>();
+        var employeeNamesForExistingPayments = new List<string>();
 
         foreach (var employee in employees)
         {
             var code = GenerateCode(paymentDate, employee.Id);
 
-            _paymentDataService.AddPaymentToClaim(paymentDate, employee.Id, code);
+            try
+            {
+                _paymentDataService.AddPaymentToClaim(paymentDate, employee.Id, code);
+            }
+            catch
+            {
+                employeeNamesForExistingPayments.Add(employee.Name);
+            }
 
             employeeCodeList.Add(new EmployeePaymentCode
             {
@@ -32,7 +40,7 @@ public class PaymentService : IPaymentService
             });
         }
 
-        return employeeCodeList;
+        return (employeeCodeList, employeeNamesForExistingPayments);
     }
 
     public bool ClaimSalary(int employeeId, int code)

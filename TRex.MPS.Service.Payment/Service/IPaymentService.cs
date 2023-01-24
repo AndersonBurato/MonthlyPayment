@@ -5,7 +5,7 @@ namespace TRex.MPS.Payment.Service;
 
 public interface IPaymentService
 {
-    List<EmployeePaymentCode> GenerateCodesToEmails(DateTimeOffset paymentDate, List<EmployeeModel> employees);
+    (List<EmployeePaymentCode>, List<string>) GenerateCodesToEmails(DateTimeOffset paymentDate, List<EmployeeModel> employees);
 
     bool ClaimSalary(int employeeId, int code);
 }

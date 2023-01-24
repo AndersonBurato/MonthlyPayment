@@ -36,7 +36,7 @@ public static class IoC
             .ConfigurePaymentServices()
             .ConfigureLoginServices()
             .ConfigureEmployeeServices();
-        
+
         ServiceProvider = services.BuildServiceProvider();
     }
 

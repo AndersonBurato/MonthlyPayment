@@ -1,5 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
+using TRex.MPS.Core.Data;
 using TRex.MPS.Model.Configuration;
+using TRex.MPS.Model.Employee;
+using TRex.MPS.Model.Payment;
 
 namespace TRex.MPS.Payment.DataService;
 
@@ -41,5 +45,32 @@ public class PaymentDataService : IPaymentDataService
         sqlCommand.Parameters.AddWithValue("@code", code);
 
         return sqlCommand.ExecuteNonQuery() > 0;
+    }
+
+    public List<EmployeePaymentCode> GetEmployeePaymentCodes()
+    {
+        var result = new List<EmployeePaymentCode>();
+
+        var query = $"SELECT e.EmployeeId, p.MonthYear AS PaymentDate, e.Name AS EmployeeName, p.Code " +
+                    $"FROM Payment p " +
+                    $"INNER JOIN Employee e ON p.EmployeeId = e.EmployeeId";
+
+        using var sqlConnection = new SqlConnection(_appSettings.DataBaseSettings.ConnectionString);
+        sqlConnection.Open();
+
+        var sqlCommand = new SqlCommand(query, sqlConnection);
+
+        var queryResult = sqlCommand.ExecuteReader();
+
+        while (queryResult.Read())
+            result.Add(new EmployeePaymentCode
+            {
+                EmployeeId = DataExtensionMethods.GetDataReaderValue<int>(queryResult, "EmployeeId"),
+                PaymentDate = DataExtensionMethods.GetDataReaderValue<DateTimeOffset>(queryResult, "PaymentDate"),
+                EmployeeName = DataExtensionMethods.GetDataReaderValue<string>(queryResult, "EmployeeName"),
+                Code = DataExtensionMethods.GetDataReaderValue<string>(queryResult, "Code")
+            });
+
+        return result;
     }
 }

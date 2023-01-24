@@ -8,5 +8,4 @@ public class EmployeePaymentCode
     public string EMail { get; set; }
     public string Code { get; set; }
     public string MagnifiedCode { get; set; }
-    public decimal Salary { get; set; }
 }
