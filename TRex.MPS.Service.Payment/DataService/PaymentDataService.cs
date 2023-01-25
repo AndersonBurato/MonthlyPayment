@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
+using System.Security.Claims;
 using TRex.MPS.Core.Data;
 using TRex.MPS.Model.Configuration;
 using TRex.MPS.Model.Employee;
@@ -51,7 +52,7 @@ public class PaymentDataService : IPaymentDataService
     {
         var result = new List<EmployeePaymentCode>();
 
-        var query = $"SELECT e.EmployeeId, p.MonthYear AS PaymentDate, e.Name AS EmployeeName, p.Code " +
+        var query = $"SELECT e.EmployeeId, p.MonthYear AS PaymentDate, e.Name AS EmployeeName, p.Code, p.Claimed " +
                     $"FROM Payment p " +
                     $"INNER JOIN Employee e ON p.EmployeeId = e.EmployeeId";
 
@@ -66,9 +67,11 @@ public class PaymentDataService : IPaymentDataService
             result.Add(new EmployeePaymentCode
             {
                 EmployeeId = DataExtensionMethods.GetDataReaderValue<int>(queryResult, "EmployeeId"),
-                PaymentDate = DataExtensionMethods.GetDataReaderValue<DateTimeOffset>(queryResult, "PaymentDate"),
+                PaymentDate = DateTime.SpecifyKind(DataExtensionMethods.GetDataReaderValue<DateTime>(queryResult, "PaymentDate"), DateTimeKind.Utc),
                 EmployeeName = DataExtensionMethods.GetDataReaderValue<string>(queryResult, "EmployeeName"),
-                Code = DataExtensionMethods.GetDataReaderValue<string>(queryResult, "Code")
+                Code = DataExtensionMethods.GetDataReaderValue<string>(queryResult, "Code"),
+                Claimed = DataExtensionMethods.GetDataReaderValue<bool>(queryResult, "Claimed")
+
             });
 
         return result;

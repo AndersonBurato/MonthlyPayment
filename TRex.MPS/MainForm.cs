@@ -40,7 +40,7 @@ public partial class MainForm : Form
 
     private void claimedPaymentsToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        var claimSalaryForm = IoC.GetForm<ClaimSalaryForm>();
+        var claimSalaryForm = IoC.GetForm<ClaimedPaymentForm>();
         claimSalaryForm.MdiParent = this;
         claimSalaryForm.Show();
     }
