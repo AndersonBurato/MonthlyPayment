@@ -10,7 +10,7 @@ CREATE TABLE Employee
     Email      varchar(255) NOT NULL,
     UserName   varchar(255) NOT NULL,
     Password   varchar(255) NOT NULL,
-    Role       varchar(255) NOT NULL,
+    Role       varchar(5) NOT NULL,
     PRIMARY KEY (EmployeeId)
 )
 
@@ -25,7 +25,7 @@ CREATE TABLE Payment
 (
     EmployeeId int          NOT NULL,
     MonthYear  date         NOT NULL,
-    Code       varchar(255) NOT NULL,
+    Code       varchar(10) NOT NULL,
     Claimed    bit DEFAULT 0,
     PRIMARY KEY (EmployeeId, MonthYear),
     CONSTRAINT FK_Employee FOREIGN KEY (EmployeeId)

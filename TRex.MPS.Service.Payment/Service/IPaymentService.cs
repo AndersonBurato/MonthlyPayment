@@ -7,5 +7,5 @@ public interface IPaymentService
 {
     (List<EmployeePaymentCode>, List<string>) GenerateCodesToEmails(DateTimeOffset paymentDate, List<EmployeeModel> employees);
 
-    bool ClaimSalary(int employeeId, int code);
+    bool ClaimSalary(int employeeId, string code);
 }

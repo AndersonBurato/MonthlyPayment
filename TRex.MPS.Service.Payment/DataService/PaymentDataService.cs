@@ -33,7 +33,7 @@ public class PaymentDataService : IPaymentDataService
         sqlCommand.ExecuteNonQuery();
     }
 
-    public bool ClaimSalary(int employeeId, int code)
+    public bool ClaimSalary(int employeeId, string code)
     {
         var query = "UPDATE Payment SET claimed = 1 WHERE employeeId = @employeeId AND code = @code and claimed = 0";
 

@@ -44,7 +44,7 @@ public class PaymentService : IPaymentService
         return (employeeCodeList, employeeNamesForExistingPayments);
     }
 
-    public bool ClaimSalary(int employeeId, int code)
+    public bool ClaimSalary(int employeeId, string code)
     {
         return _paymentDataService.ClaimSalary(employeeId, code);
     }

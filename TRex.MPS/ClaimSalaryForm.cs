@@ -20,7 +20,7 @@ public partial class ClaimSalaryForm : Form
             return;
         }
 
-        if (_paymentService.ClaimSalary(Global.profile!.EmployeeId, code))
+        if (_paymentService.ClaimSalary(Global.profile!.EmployeeId, CodeText.Text))
             MessageBox.Show("Salary claimed.", "Success");
         else
             MessageBox.Show("Code doesn't exist or already claimed");
