@@ -10,7 +10,7 @@ CREATE TABLE Employee
     Email      varchar(255) NOT NULL,
     UserName   varchar(255) NOT NULL,
     Password   varchar(255) NOT NULL,
-    Role       varchar(5) NOT NULL,
+    Role       varchar(10) NOT NULL,
     PRIMARY KEY (EmployeeId)
 )
 
