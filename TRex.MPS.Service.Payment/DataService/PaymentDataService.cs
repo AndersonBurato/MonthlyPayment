@@ -63,7 +63,6 @@ public class PaymentDataService : IPaymentDataService
 
         var queryResult = sqlCommand.ExecuteReader();
 
-        sqlConnection.Close();
         
         while (queryResult.Read())
             result.Add(new EmployeePaymentCode

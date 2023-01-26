@@ -19,11 +19,13 @@ public partial class LoginForm : Form
         if (string.IsNullOrWhiteSpace(UserNameText.Text))
         {
             MessageBox.Show("User cannot be empty");
+            return;
         }
         
         if (string.IsNullOrWhiteSpace(PasswordText.Text))
         {
             MessageBox.Show("Password cannot be empty");
+            return;
         }
         
         Global.profile = _loginService.Login(UserNameText.Text, PasswordText.Text);
