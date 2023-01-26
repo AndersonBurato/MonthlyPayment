@@ -10,6 +10,7 @@ public static class Startup
     {
         services.AddScoped<IPaymentService, PaymentService>();
         services.AddScoped<IPaymentDataService, PaymentDataService>();
+        services.AddScoped<IPaymentEMailService, PaymentEMailService>();
 
         return services;
     }

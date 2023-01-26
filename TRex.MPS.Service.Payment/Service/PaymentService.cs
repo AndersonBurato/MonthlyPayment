@@ -36,6 +36,7 @@ public class PaymentService : IPaymentService
                 EmployeeId = employee.Id,
                 Code = code,
                 EmployeeName = employee.Name,
+                Salary = employee.Salary,
                 PaymentDate = paymentDate
             });
         }

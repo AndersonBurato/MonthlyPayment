@@ -26,7 +26,7 @@ public static class IoC
             DataBaseSettings = new DataBaseSettings
             {
                 ConnectionString =
-                    "Data Source=NOTE-BURATO;Initial Catalog=TRex;Integrated Security=True;Encrypt=True;TrustServerCertificate=True"
+                    "Data Source=DESKTOP-634HNEN;Initial Catalog=TRex;Integrated Security=True;Encrypt=True;TrustServerCertificate=True"
             }
         };
 

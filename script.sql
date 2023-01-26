@@ -1,11 +1,12 @@
-﻿CREATE DATABASE TRex
+﻿CREATE DATABASE [TRex]
 
-USE TRex
+USE [TRex]
 
 CREATE TABLE Employee
 (
     EmployeeId int IDENTITY(1,1),
     Name       varchar(255) NOT NULL,
+    Salary     decimal NOT NULL,
     Email      varchar(255) NOT NULL,
     UserName   varchar(255) NOT NULL,
     Password   varchar(255) NOT NULL,
@@ -13,12 +14,12 @@ CREATE TABLE Employee
     PRIMARY KEY (EmployeeId)
 )
 
-INSERT INTO dbo.Employee(Name, Email, UserName, Password, Role)VALUES('Anderson Burato', 'anderson.burato@gmail.com', 'aburato', '1234', 'employee')
-INSERT INTO dbo.Employee(Name, Email, UserName, Password, Role)VALUES('Zinaida Olimpiada', 'anderson.burato@gmail.com', 'zolimpiada', '1234', 'employee')
-INSERT INTO dbo.Employee(Name, Email, UserName, Password, Role)VALUES('Derval Phelan', 'anderson.burato@gmail.com', 'dphelan', '4321', 'employee')
-INSERT INTO dbo.Employee(Name, Email, UserName, Password, Role)VALUES('Pasquale Erica', 'anderson.burato@gmail.com', 'perica', '4321', 'employee')
-INSERT INTO dbo.Employee(Name, Email, UserName, Password, Role)VALUES('Kouki Naomi', 'anderson.burato@gmail.com', 'knaomi', '4321', 'employee')
-INSERT INTO dbo.Employee(Name, Email, UserName, Password, Role)VALUES('Nataniel Belinha', 'anderson.burato@gmail.com', 'nbelinha', '1234', 'hr')
+INSERT INTO dbo.Employee(Name, Salary, Email, UserName, Password, Role)VALUES('Anderson Burato', 1000.00, 'anderson.burato@gmail.com', 'aburato', '1234', 'employee')
+INSERT INTO dbo.Employee(Name, Salary, Email, UserName, Password, Role)VALUES('Zinaida Olimpiada', 1000.00, 'anderson.burato@gmail.com', 'zolimpiada', '1234', 'employee')
+INSERT INTO dbo.Employee(Name, Salary, Email, UserName, Password, Role)VALUES('Derval Phelan', 1000.00, 'anderson.burato@gmail.com', 'dphelan', '1234', 'employee')
+INSERT INTO dbo.Employee(Name, Salary, Email, UserName, Password, Role)VALUES('Pasquale Erica', 1000.00, 'anderson.burato@gmail.com', 'perica', '1234', 'employee')
+INSERT INTO dbo.Employee(Name, Salary, Email, UserName, Password, Role)VALUES('Kouki Naomi', 1000.00, 'anderson.burato@gmail.com', 'knaomi', '1234', 'employee')
+INSERT INTO dbo.Employee(Name, Salary, Email, UserName, Password, Role)VALUES('Nataniel Belinha', 1000.00, 'anderson.burato@gmail.com', 'nbelinha', '1234', 'hr')
 
 CREATE TABLE Payment
 (

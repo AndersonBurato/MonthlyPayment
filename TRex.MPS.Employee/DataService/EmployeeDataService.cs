@@ -19,7 +19,7 @@ public class EmployeeDataService : IEmployeeDataService
         var result = new List<EmployeeModel>();
 
 
-        var query = "SELECT EmployeeId, Name, Email FROM Employee";
+        var query = "SELECT EmployeeId, Name, Email, Salary FROM Employee";
 
         using var sqlConnection = new SqlConnection(_appSettings.DataBaseSettings.ConnectionString);
         sqlConnection.Open();
@@ -33,7 +33,8 @@ public class EmployeeDataService : IEmployeeDataService
             {
                 Id = DataExtensionMethods.GetDataReaderValue<int>(queryResult, "EmployeeId"),
                 Email = DataExtensionMethods.GetDataReaderValue<string>(queryResult, "Email"),
-                Name = DataExtensionMethods.GetDataReaderValue<string>(queryResult, "Name")
+                Name = DataExtensionMethods.GetDataReaderValue<string>(queryResult, "Name"),
+                Salary = DataExtensionMethods.GetDataReaderValue<decimal>(queryResult, "Salary")
             });
 
         return result;

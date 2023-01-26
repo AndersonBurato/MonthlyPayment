@@ -71,7 +71,6 @@ public class PaymentDataService : IPaymentDataService
                 EmployeeName = DataExtensionMethods.GetDataReaderValue<string>(queryResult, "EmployeeName"),
                 Code = DataExtensionMethods.GetDataReaderValue<string>(queryResult, "Code"),
                 Claimed = DataExtensionMethods.GetDataReaderValue<bool>(queryResult, "Claimed")
-
             });
 
         return result;

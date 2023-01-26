@@ -7,12 +7,7 @@ namespace TRex.MPS;
 public partial class ClaimedPaymentForm : Form
 {
     private readonly IPaymentDataService _paymentDataService;
-    private string[,] magnifiedNumbers =
-    {
-        { "  _ ", "   ", "  _ ", " _ ", "    ", "  _ ", "  _ ", " _ ", "  _ ", "  _ " },
-        { " | |", " | ", "  _|", " _|", " |_|", " |_ ", " |_ ", "  |", " |_|", " |_|" },
-        { " |_|", " | ", " |_ ", " _|", "   |", "  _|", " |_|", "  |", " |_|", "  _|" }
-    };
+    
 
     public ClaimedPaymentForm(IPaymentDataService paymentDataService)
     {
@@ -22,30 +17,22 @@ public partial class ClaimedPaymentForm : Form
 
     private void ClaimedPaymentForm_Load(object sender, EventArgs e)
     {
-        List<EmployeePaymentCode> employeePaymentCodes = _paymentDataService.GetEmployeePaymentCodes();
-
-        foreach (var employeePaymentCode in employeePaymentCodes)
-        {
-            employeePaymentCode.MagnifiedCode = MagnifyCode(employeePaymentCode.Code);
-        }
-
-        MessageBox.Show("");
+        PaymentDateTimePicker_ValueChanged(sender, e);
     }
 
-    private StringBuilder MagnifyCode(string code)
+    private void PaymentDateTimePicker_ValueChanged(object sender, EventArgs e)
     {
-        var mamagnifiedCode = new StringBuilder();
+        var paymentDate = new DateTimeOffset(PaymentDateTimePicker.Value.Year, PaymentDateTimePicker.Value.Month, 1, 0, 0, 0, new TimeSpan(0, 0, 0));
+        
+        ClaimedPaymentslistBox.Items.Clear();
 
-        for (int lineNumber = 0; lineNumber < 3; lineNumber++)
+        var payments = _paymentDataService.GetEmployeePaymentCodes();
+
+        ClaimedPaymentslistBox.Items.Add("Name - Status");
+        
+        foreach (var payment in payments.Where(x=> x.PaymentDate == paymentDate))
         {
-            foreach (char c in code)
-            {
-                mamagnifiedCode.Append(magnifiedNumbers[lineNumber, int.Parse(c.ToString())]);
-            }
-
-            mamagnifiedCode.AppendLine();
+            ClaimedPaymentslistBox.Items.Add($"{payment.EmployeeName} - {(payment.Claimed ? "Completed" : "Pending")}");
         }
-
-        return mamagnifiedCode;
     }
 }

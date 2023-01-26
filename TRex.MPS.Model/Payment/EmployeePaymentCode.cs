@@ -9,6 +9,7 @@ public class EmployeePaymentCode
     public string EmployeeName { get; set; }
     public string EMail { get; set; }
     public string Code { get; set; }
+    public decimal Salary { get; set; }
     public bool Claimed { get; set; }
     public StringBuilder MagnifiedCode { get; set; }
 }

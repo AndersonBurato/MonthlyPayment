@@ -8,29 +8,33 @@ namespace TRex.MPS;
 
 public partial class PaymentsForm : Form
 {
+
+    private readonly IPaymentService _paymentService;
+    private readonly IEmployeeDataService _employeeDataService;
+    private readonly IPaymentEMailService _paymentEmailService;
+
     public PaymentsForm(
         IPaymentService paymentService,
-        IEmployeeDataService employeeDataService
+        IEmployeeDataService employeeDataService,
+        IPaymentEMailService paymentEmailService
     )
     {
         InitializeComponent();
         _paymentService = paymentService;
         _employeeDataService = employeeDataService;
+        _paymentEmailService = paymentEmailService;
     }
-
-    public IPaymentService _paymentService { get; }
-    public IEmployeeDataService _employeeDataService { get; }
-
+    
     private void PaymentsForm_Load(object sender, EventArgs e)
     {
         var employeeList = _employeeDataService.GetAll();
-        EmployeeCheckedList.DisplayMember = "text";
-        EmployeeCheckedList.ValueMember = "value";
-
-
+        EmployeeCheckedList.DisplayMember = "Name";
+        EmployeeCheckedList.ValueMember = "Id";
+        
         foreach (var employee in employeeList)
-            EmployeeCheckedList.Items.Add(new ObjectListItem
-                { Value = employee.Id, Text = employee.Name });
+        {
+            EmployeeCheckedList.Items.Add(employee);
+        }
     }
 
     private void SendPaymentCodes_Click(object sender, EventArgs e)
@@ -39,21 +43,17 @@ public partial class PaymentsForm : Form
 
         foreach (var item in EmployeeCheckedList.CheckedItems)
         {
-            var objectListItem = (ObjectListItem)item;
+            var employee = (EmployeeModel)item;
 
-            employeeToGenerateCode.Add(new EmployeeModel
-            {
-                Id = objectListItem.Value,
-                Name = objectListItem.Text
-            });
+            employeeToGenerateCode.Add(employee);
         }
 
-        var paymentDate = new DateTime(MonthYearPaymentDateTimePicker.Value.Year, MonthYearPaymentDateTimePicker.Value.Month, 1);
+        var paymentDate = new DateTimeOffset(MonthYearPaymentDateTimePicker.Value.Year, MonthYearPaymentDateTimePicker.Value.Month, 1, 0,0,0, new TimeSpan(-0, 0, 0));
 
         var (employeeCodes, employeeNamesPaymentAlreadyExist) =
             _paymentService.GenerateCodesToEmails(paymentDate, employeeToGenerateCode);
 
-        //todo:send real email
+        _paymentEmailService.SendPaymentCodes(employeeCodes);
 
         if (employeeNamesPaymentAlreadyExist.Any())
         {
