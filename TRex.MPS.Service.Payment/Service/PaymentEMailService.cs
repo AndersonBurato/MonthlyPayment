@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Azure.Core.GeoJson;
+﻿using System.Text;
 using TRex.MPS.Model.Payment;
 
 namespace TRex.MPS.Payment.Service
@@ -16,7 +11,7 @@ namespace TRex.MPS.Payment.Service
             { " | |", " | ", "  _|", " _|", " |_|", " |_ ", " |_ ", "  |", " |_|", " |_|" },
             { " |_|", " | ", " |_ ", " _|", "   |", "  _|", " |_|", "  |", " |_|", "  _|" }
         };
-        
+
         private const string MonthHeader = "Month";
         private const string EmployeeHeader = "Employee";
         private const string CodeHeader = "Code";
@@ -37,20 +32,26 @@ namespace TRex.MPS.Payment.Service
                 var magnifiedCodeLine1 = MagnifyCodeLine(0, paymentCode.Code);
                 var magnifiedCodeLine2 = MagnifyCodeLine(1, paymentCode.Code);
                 var magnifiedCodeLine3 = MagnifyCodeLine(2, paymentCode.Code);
-                
-                Body.AppendLine($"|-{string.Empty.PadRight(20, '-')}-|-{string.Empty.PadRight(paddedName.Length, '-')}-|-{string.Empty.PadRight(magnifiedCodeLine1.Length, '-')}-|-{string.Empty.PadRight(paddedSalary.Length, '-')}-|");
-                Body.AppendLine($"| {MonthHeader.PadRight(20)} | {EmployeeHeader.PadRight(paddedName.Length)} | {CodeHeader.PadRight(magnifiedCodeLine1.Length)} | {SalaryHeader.PadRight(paddedSalary.Length)} |");
-                Body.AppendLine($"| {String.Empty.PadRight(20, ' ')} | {string.Empty.PadRight(paddedName.Length, ' ')} | {magnifiedCodeLine1} | {string.Empty.PadRight(paddedSalary.Length, ' ')} |");
-                Body.AppendLine($"| {month.PadRight(20)} | {paymentCode.EmployeeName} | {magnifiedCodeLine2} | {paddedSalary} |");
-                Body.AppendLine($"| {String.Empty.PadRight(20, ' ')} | {string.Empty.PadRight(paddedName.Length, ' ')} | {magnifiedCodeLine3} | {string.Empty.PadRight(paddedSalary.Length, ' ')} |");
-                Body.AppendLine($"|-{string.Empty.PadRight(20, '-')}-|-{string.Empty.PadRight(paddedName.Length, '-')}-|-{string.Empty.PadRight(magnifiedCodeLine3.Length, '-')}-|-{string.Empty.PadRight(paddedSalary.Length, '-')}-|");
+
+                Body.AppendLine(
+                    $"|-{string.Empty.PadRight(20, '-')}-|-{string.Empty.PadRight(paddedName.Length, '-')}-|-{string.Empty.PadRight(magnifiedCodeLine1.Length, '-')}-|-{string.Empty.PadRight(paddedSalary.Length, '-')}-|");
+                Body.AppendLine(
+                    $"| {MonthHeader.PadRight(20)} | {EmployeeHeader.PadRight(paddedName.Length)} | {CodeHeader.PadRight(magnifiedCodeLine1.Length)} | {SalaryHeader.PadRight(paddedSalary.Length)} |");
+                Body.AppendLine(
+                    $"| {String.Empty.PadRight(20, ' ')} | {string.Empty.PadRight(paddedName.Length, ' ')} | {magnifiedCodeLine1} | {string.Empty.PadRight(paddedSalary.Length, ' ')} |");
+                Body.AppendLine(
+                    $"| {month.PadRight(20)} | {paymentCode.EmployeeName} | {magnifiedCodeLine2} | {paddedSalary} |");
+                Body.AppendLine(
+                    $"| {String.Empty.PadRight(20, ' ')} | {string.Empty.PadRight(paddedName.Length, ' ')} | {magnifiedCodeLine3} | {string.Empty.PadRight(paddedSalary.Length, ' ')} |");
+                Body.AppendLine(
+                    $"|-{string.Empty.PadRight(20, '-')}-|-{string.Empty.PadRight(paddedName.Length, '-')}-|-{string.Empty.PadRight(magnifiedCodeLine3.Length, '-')}-|-{string.Empty.PadRight(paddedSalary.Length, '-')}-|");
 
                 File.WriteAllText($"{paymentCode.EmployeeName}.txt", Body.ToString());
 
                 //todo:send email
             }
         }
-        
+
         private StringBuilder MagnifyCode(string code)
         {
             var magnifiedCode = new StringBuilder();
@@ -66,7 +67,7 @@ namespace TRex.MPS.Payment.Service
         private string MagnifyCodeLine(int line, string code)
         {
             var magnifiedCode = new StringBuilder();
-            
+
             foreach (char c in code)
             {
                 magnifiedCode.Append(magnifiedNumbers[line, int.Parse(c.ToString())]);
